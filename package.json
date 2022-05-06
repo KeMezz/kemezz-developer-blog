@@ -1,0 +1,36 @@
+{
+  "name": "kemezz-developer-blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "kemezz-developer-blog",
+  "author": "정형진",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
+    "babel-plugin-styled-components": "^2.0.7",
+    "gatsby": "^4.13.1",
+    "gatsby-plugin-mdx": "^3.13.0",
+    "gatsby-plugin-styled-components": "^5.13.0",
+    "gatsby-source-filesystem": "^4.13.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.31",
+    "@types/react": "^17.0.44",
+    "@types/react-dom": "^17.0.16",
+    "typescript": "^4.6.4"
+  }
+}
