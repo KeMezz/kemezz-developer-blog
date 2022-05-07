@@ -26,6 +26,7 @@ const ThemeSwitch = styled.div`
   width: 60px;
   height: 33px;
   border: solid 3px ${({ theme }) => theme.text};
+  background-color: #ccc;
   border-radius: 30px;
   position: relative;
   cursor: pointer;
@@ -54,7 +55,7 @@ function Header({ isDark, setIsDark }: iHeader) {
   return (
     <Container>
       <Wrapper>
-        <HiOutlineMenuAlt4 style={{ fontSize: 40 }} />
+        <HiOutlineMenuAlt4 style={{ fontSize: 40, cursor: "pointer" }} />
         <HiCode style={{ fontSize: 60 }} />
         <ThemeSwitch onClick={toggleTheme}>
           <ToggleCircle isDark={isDark} />
