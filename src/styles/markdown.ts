@@ -79,12 +79,11 @@ export const Markdown = styled.div`
 
   ul,
   ol {
-    line-height: 1.6;
     margin-left: 0;
     margin-right: 0;
     padding: 0;
-    margin-bottom: 1em;
-    list-style-position: outside;
+    margin-bottom: 2em;
+    list-style-position: inside;
     list-style-image: none;
   }
 

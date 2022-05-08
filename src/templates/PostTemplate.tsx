@@ -78,7 +78,6 @@ const PostDate = styled.p`
 `;
 const PostBody = styled(Markdown)`
   padding-top: 34px;
-  padding-bottom: 54px;
 `;
 const Addon = styled.section`
   display: flex;
