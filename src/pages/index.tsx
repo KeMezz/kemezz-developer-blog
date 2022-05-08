@@ -6,39 +6,54 @@ import { FaRegCalendar } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const Container = styled.section`
-  padding: 80px 0;
+  padding: 60px 0;
 `;
 
 const RecentTitle = styled.h1`
-  font-size: 30px;
+  font-size: 26px;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: 26px;
+  margin-left: 14px;
 `;
 
 const PostLists = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   column-gap: 30px;
   row-gap: 40px;
+  @media (max-width: 1280px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 880px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 `;
 
 const Post = styled(motion.div)`
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: 280px;
+  height: 220px;
   background-color: ${(props) => props.theme.header};
   border-radius: 20px;
-  padding: 38px;
+  padding: 28px;
   line-height: 1.4;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  @media (max-width: 880px) {
+    height: 160px;
+  }
   h1 {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
-    padding-bottom: 16px;
+    padding-bottom: 12px;
+    height: 70px;
+    @media (max-width: 880px) {
+      height: 40px;
+    }
   }
   p {
-    font-size: 18px;
+    font-size: 14px;
     color: ${(props) => props.theme.subText};
   }
 `;
@@ -119,8 +134,8 @@ function Home() {
         <PostLists>
           {edges.map(({ node: { frontmatter, fileAbsolutePath } }, index) => {
             const title =
-              frontmatter.title.length > 48
-                ? frontmatter.title.slice(0, 48) + "..."
+              frontmatter.title.length > 45
+                ? frontmatter.title.slice(0, 45) + "..."
                 : frontmatter.title;
             const description =
               frontmatter.description.length > 90
