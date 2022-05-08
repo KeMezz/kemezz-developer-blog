@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import Layout from "../layouts/Layout";
 import { FaRegCalendar } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Container = styled.section`
   padding: 80px 0;
@@ -21,7 +22,7 @@ const PostLists = styled.div`
   row-gap: 40px;
 `;
 
-const Post = styled.div`
+const Post = styled(motion.div)`
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -30,6 +31,7 @@ const Post = styled.div`
   border-radius: 20px;
   padding: 38px;
   line-height: 1.4;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
   h1 {
     font-size: 30px;
     font-weight: bold;
@@ -102,10 +104,12 @@ function Home() {
   `);
 
   const navigateToPost = (fileAbsolutePath: string) => {
-    const targetLink = fileAbsolutePath
+    const year =
+      fileAbsolutePath.split("/")[fileAbsolutePath.split("/").length - 2];
+    const fileName = fileAbsolutePath
       .split("/")
       [fileAbsolutePath.split("/").length - 1].split(".")[0];
-    navigate(`/${targetLink}`);
+    navigate(`/${year}/${fileName}`);
   };
 
   return (
@@ -131,6 +135,8 @@ function Home() {
               <Post
                 key={index}
                 onClick={() => navigateToPost(fileAbsolutePath)}
+                initial={{ y: 0 }}
+                whileHover={{ y: -10 }}
               >
                 <h1>{title}</h1>
                 <p>{description}</p>
