@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { HiOutlineMenuAlt4, HiCode } from "react-icons/hi";
+import { Link } from "gatsby";
 
 const Container = styled.header`
   display: flex;
-  width: 100vw;
-  height: 100px;
+  width: 100%;
+  height: 80px;
   background-color: ${(props) => props.theme.header};
   transition: background-color 0.3s;
   /* box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); */
@@ -20,6 +21,17 @@ const Wrapper = styled.section`
   height: inherit;
   max-width: 1280px;
   padding: 0 40px;
+  svg {
+    cursor: pointer;
+  }
+`;
+
+const Menu = styled(HiOutlineMenuAlt4)`
+  font-size: 40px;
+`;
+
+const Logo = styled(HiCode)`
+  font-size: 60px;
 `;
 
 const ThemeSwitch = styled.div`
@@ -52,11 +64,17 @@ interface iHeader {
 
 function Header({ isDark, setIsDark }: iHeader) {
   const toggleTheme = () => setIsDark((prev: boolean) => !prev);
+  useEffect(
+    () => localStorage.setItem("isDark", JSON.stringify(isDark)),
+    [isDark]
+  );
   return (
     <Container>
       <Wrapper>
-        <HiOutlineMenuAlt4 style={{ fontSize: 40, cursor: "pointer" }} />
-        <HiCode style={{ fontSize: 60 }} />
+        <Menu />
+        <Link to="/">
+          <Logo />
+        </Link>
         <ThemeSwitch onClick={toggleTheme}>
           <ToggleCircle isDark={isDark} />
         </ThemeSwitch>

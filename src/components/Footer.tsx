@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Container = styled.footer`
-  width: 100vw;
+  width: 100%;
   height: 260px;
   background-color: ${(props) => props.theme.header};
   transition: background-color 0.3s;
