@@ -25,7 +25,8 @@ interface iLayout {
 
 function Layout({ children }: iLayout) {
   const [isDark, setIsDark] = useState(
-    JSON.parse(localStorage.getItem("isDark") || "false")
+    false
+    // JSON.parse(localStorage.getItem("isDark") || "false")
   );
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>

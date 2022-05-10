@@ -64,10 +64,10 @@ interface iHeader {
 
 function Header({ isDark, setIsDark }: iHeader) {
   const toggleTheme = () => setIsDark((prev: boolean) => !prev);
-  useEffect(
-    () => localStorage.setItem("isDark", JSON.stringify(isDark)),
-    [isDark]
-  );
+  // useEffect(
+  //   () => localStorage.setItem("isDark", JSON.stringify(isDark)),
+  //   [isDark]
+  // );
   return (
     <Container>
       <Wrapper>

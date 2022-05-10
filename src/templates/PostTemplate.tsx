@@ -84,6 +84,8 @@ const Addon = styled.section`
   flex-direction: column;
   gap: 36px;
   div {
+    position: sticky;
+    top: 22px;
     width: 360px;
     background-color: ${(props) => props.theme.header};
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);

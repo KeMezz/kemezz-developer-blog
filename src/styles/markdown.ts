@@ -32,23 +32,23 @@ export const Markdown = styled.div`
 
   h1 {
     font-weight: 900;
-    font-size: 2.488em;
+    font-size: 2em;
   }
 
   h2 {
-    font-size: 2.074em;
+    font-size: 1.7em;
   }
 
   h3 {
-    font-size: 1.728em;
+    font-size: 1.4em;
   }
 
   h4 {
-    font-size: 1.44em;
+    font-size: 1.2em;
   }
 
   h5 {
-    font-size: 1.2em;
+    font-size: 1em;
   }
 
   h6 {
