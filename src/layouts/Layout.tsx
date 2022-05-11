@@ -17,6 +17,9 @@ const Container = styled.main`
   margin: 0 auto;
   padding: 0 40px;
   min-height: calc(100vh - 340px);
+  @media (max-width: 450px) {
+    padding: 0 20px;
+  }
 `;
 
 interface iLayout {

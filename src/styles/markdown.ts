@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const Markdown = styled.div`
   line-height: 1.5;
   font-size: 16px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 
   hr {
     background: ${(props) => props.theme.background};
@@ -28,7 +31,7 @@ export const Markdown = styled.div`
   h4,
   h5,
   h6 {
-    margin-top: 1.2em;
+    margin-top: 1em;
     margin-bottom: 0.8em;
     line-height: 1.4;
     letter-spacing: -0.025em;
@@ -45,6 +48,7 @@ export const Markdown = styled.div`
   h1 {
     font-weight: 900;
     font-size: 2em;
+    margin-top: 1.6em;
   }
 
   h2 {

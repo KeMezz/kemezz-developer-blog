@@ -9,7 +9,9 @@ const Container = styled.header`
   height: 80px;
   background-color: ${(props) => props.theme.header};
   transition: background-color 0.3s;
-  /* box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); */
+  @media (max-width: 768px) {
+    height: 60px;
+  }
 `;
 
 const Wrapper = styled.section`
@@ -24,14 +26,23 @@ const Wrapper = styled.section`
   svg {
     cursor: pointer;
   }
+  @media (max-width: 450px) {
+    padding: 0 20px;
+  }
 `;
 
 const Menu = styled(HiOutlineMenuAlt4)`
   font-size: 40px;
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
 `;
 
 const Logo = styled(HiCode)`
   font-size: 60px;
+  @media (max-width: 768px) {
+    font-size: 40px;
+  }
 `;
 
 const ThemeSwitch = styled.div`
@@ -43,6 +54,10 @@ const ThemeSwitch = styled.div`
   position: relative;
   cursor: pointer;
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 22px;
+  }
 `;
 
 const ToggleCircle = styled.div<{ isDark: boolean }>`
@@ -55,6 +70,11 @@ const ToggleCircle = styled.div<{ isDark: boolean }>`
   transition: left 0.3s;
   border: solid 3px ${({ theme }) => theme.text};
   background-color: ${({ theme }) => theme.background};
+  @media (max-width: 768px) {
+    width: 22px;
+    height: 22px;
+    left: ${(props) => (props.isDark ? "15px" : "-3px")};
+  }
 `;
 
 interface iHeader {

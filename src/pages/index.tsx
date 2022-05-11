@@ -18,19 +18,19 @@ const RecentTitle = styled.h1`
 
 const PostLists = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(350px, auto));
   column-gap: 30px;
   row-gap: 40px;
-  @media (max-width: 1280px) {
-    grid-template-columns: 1fr 1fr;
+  @media (max-width: 1024px) {
+    gap: 18px;
   }
-  @media (max-width: 880px) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 14px;
   }
 `;
 
-const Post = styled(motion.div)`
+const Post = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -40,21 +40,36 @@ const Post = styled(motion.div)`
   padding: 28px;
   line-height: 1.4;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-  @media (max-width: 880px) {
-    height: 160px;
+  @media (max-width: 1024px) {
+    height: auto;
+  }
+  @media (max-width: 768px) {
+    padding: 20px;
   }
   h1 {
     font-size: 20px;
     font-weight: bold;
     padding-bottom: 12px;
     height: 70px;
-    @media (max-width: 880px) {
-      height: 40px;
+    @media (max-width: 1024px) {
+      height: auto;
+    }
+    @media (max-width: 768px) {
+      font-size: 16px;
     }
   }
   p {
     font-size: 14px;
     color: ${(props) => props.theme.subText};
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+  @media (min-width: 1600px) {
+    transition: 0.3s transform;
+    &:hover {
+      transform: translateY(-10px);
+    }
   }
 `;
 
@@ -65,6 +80,9 @@ const PostDate = styled.div`
   align-items: center;
   font-size: 12px;
   color: ${(props) => props.theme.subText};
+  @media (max-width: 1024px) {
+    padding-top: 20px;
+  }
 `;
 
 interface mdxQuery {
@@ -129,8 +147,6 @@ function Home() {
                 <Post
                   key={index}
                   onClick={() => navigateToPost(fileAbsolutePath)}
-                  initial={{ y: 0 }}
-                  whileHover={{ y: -10 }}
                 >
                   <h1>{title}</h1>
                   <p>{excerpt}</p>

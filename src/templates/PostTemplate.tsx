@@ -29,12 +29,23 @@ const PageHead = styled.section`
   h1 {
     font-size: 30px;
     font-weight: 900;
+    @media (max-width: 1024px) {
+      font-size: 26px;
+    }
+  }
+  h3 {
+    @media (max-width: 1024px) {
+      font-size: 14px;
+    }
   }
 `;
 const PageBody = styled.section`
   display: flex;
   gap: 30px;
   margin-bottom: 80px;
+  @media (max-width: 1300px) {
+    flex-direction: column;
+  }
 `;
 const Post = styled.section`
   width: 810px;
@@ -42,6 +53,19 @@ const Post = styled.section`
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
   padding: 50px 55px;
+  @media (max-width: 1300px) {
+    width: 100%;
+  }
+  @media (max-width: 1024px) {
+    width: 100vw;
+    padding: 30px 34px;
+    transform: translateX(-40px);
+    border-radius: 0;
+  }
+  @media (max-width: 450px) {
+    padding: 30px 20px;
+    transform: translateX(-20px);
+  }
 `;
 const PostHead = styled.div`
   display: flex;
@@ -62,6 +86,10 @@ const PostTitle = styled.h1`
     left: 50%;
     transform: translateX(-50%);
     background-color: ${(props) => props.theme.subText};
+  }
+  @media (max-width: 1024px) {
+    font-size: 24px;
+    padding-bottom: 14px;
   }
 `;
 const PostDate = styled.p`

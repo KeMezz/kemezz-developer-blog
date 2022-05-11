@@ -7,6 +7,14 @@ const Container = styled.footer`
   height: 260px;
   background-color: ${(props) => props.theme.header};
   transition: background-color 0.3s;
+  @media (max-width: 768px) {
+    height: 240px;
+  }
+  @media (max-width: 450px) {
+    height: auto;
+    padding-top: 40px;
+    padding-bottom: 30px;
+  }
 `;
 
 const Wrapper = styled.section`
@@ -19,19 +27,39 @@ const Wrapper = styled.section`
   height: inherit;
   max-width: 1280px;
   padding: 0 40px;
+  @media (max-width: 450px) {
+    padding: 0 20px;
+  }
 `;
 
 const Texts = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  @media (max-width: 450px) {
+    gap: 4px;
+  }
   h1 {
     font-weight: 900;
     font-size: 30px;
     padding-bottom: 18px;
+    @media (max-width: 768px) {
+      font-size: 24px;
+    }
+    @media (max-width: 450px) {
+      font-size: 20px;
+      padding-bottom: 14px;
+    }
   }
   p {
     font-size: 14px;
+    line-height: 1.5;
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
+    @media (max-width: 450px) {
+      font-size: 10px;
+    }
   }
 `;
 
@@ -40,6 +68,13 @@ const Links = styled.div`
   display: flex;
   gap: 24px;
   font-size: 30px;
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+  @media (max-width: 450px) {
+    font-size: 20px;
+    margin-top: 20px;
+  }
 `;
 
 function Footer() {
