@@ -10,6 +10,13 @@ export const Markdown = styled.div`
     border: 0;
   }
 
+  code {
+    border: solid 1px ${(props) => props.theme.header};
+    background-color: ${(props) => props.theme.background};
+    padding: 2px 8px;
+    font-size: 15px;
+  }
+
   h1,
   h2,
   h3,

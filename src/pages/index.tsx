@@ -77,14 +77,7 @@ interface mdxQuery {
           description: string;
           title: string;
         };
-        headings: {
-          value: string;
-          depth: number;
-        }[];
-        internal: {
-          content: string;
-        };
-        id: string;
+        excerpt: string;
       };
     }[];
   };
@@ -104,14 +97,7 @@ function Home() {
               description
               title
             }
-            headings {
-              value
-              depth
-            }
-            internal {
-              content
-            }
-            id
+            excerpt(pruneLength: 90)
           }
         }
       }
@@ -119,12 +105,13 @@ function Home() {
   `);
 
   const navigateToPost = (fileAbsolutePath: string) => {
-    const year =
-      fileAbsolutePath.split("/")[fileAbsolutePath.split("/").length - 2];
-    const fileName = fileAbsolutePath
-      .split("/")
-      [fileAbsolutePath.split("/").length - 1].split(".")[0];
-    navigate(`/${year}/${fileName}`);
+    navigate(
+      `/${
+        fileAbsolutePath
+          .split("/")
+          [fileAbsolutePath.split("/").length - 1].split(".")[0]
+      }`
+    );
   };
 
   return (
@@ -132,36 +119,29 @@ function Home() {
       <Container>
         <RecentTitle>최근에 올라온 포스트</RecentTitle>
         <PostLists>
-          {edges.map(({ node: { frontmatter, fileAbsolutePath } }, index) => {
-            const title =
-              frontmatter.title.length > 45
-                ? frontmatter.title.slice(0, 45) + "..."
-                : frontmatter.title;
-            const description =
-              frontmatter.description.length > 90
-                ? frontmatter.description.slice(0, 90) + "..."
-                : frontmatter.description;
-            const date = `${new Date(
-              frontmatter.date
-            ).getFullYear()}년 ${new Date(
-              frontmatter.date
-            ).getMonth()}월 ${new Date(frontmatter.date).getDay()}일`;
-            return (
-              <Post
-                key={index}
-                onClick={() => navigateToPost(fileAbsolutePath)}
-                initial={{ y: 0 }}
-                whileHover={{ y: -10 }}
-              >
-                <h1>{title}</h1>
-                <p>{description}</p>
-                <PostDate>
-                  <FaRegCalendar />
-                  <p>{date}</p>
-                </PostDate>
-              </Post>
-            );
-          })}
+          {edges.map(
+            ({ node: { frontmatter, fileAbsolutePath, excerpt } }, index) => {
+              const title =
+                frontmatter.title.length > 45
+                  ? frontmatter.title.slice(0, 45) + "..."
+                  : frontmatter.title;
+              return (
+                <Post
+                  key={index}
+                  onClick={() => navigateToPost(fileAbsolutePath)}
+                  initial={{ y: 0 }}
+                  whileHover={{ y: -10 }}
+                >
+                  <h1>{title}</h1>
+                  <p>{excerpt}</p>
+                  <PostDate>
+                    <FaRegCalendar />
+                    <p>{frontmatter.date}</p>
+                  </PostDate>
+                </Post>
+              );
+            }
+          )}
         </PostLists>
       </Container>
     </Layout>

@@ -7,6 +7,7 @@ const config: GatsbyConfig = {
     siteUrl: `https://www.yourdomain.tld`,
   },
   plugins: [
+    "gatsby-plugin-sharp",
     "gatsby-plugin-styled-components",
     {
       resolve: "gatsby-source-filesystem",
@@ -14,11 +15,15 @@ const config: GatsbyConfig = {
     },
     {
       resolve: "gatsby-source-filesystem",
-      options: { name: "posts", path: "posts" },
+      options: { name: "posts", path: "./src/posts" },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: { name: "images", path: "./src/images" },
     },
     {
       resolve: "gatsby-plugin-page-creator",
-      options: { path: "posts" },
+      options: { path: "./src/posts" },
     },
     {
       resolve: "gatsby-plugin-mdx",
@@ -27,6 +32,12 @@ const config: GatsbyConfig = {
           default: path.resolve("./src/templates/PostTemplate.tsx"),
         },
         extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: { maxWidth: 1200 },
+          },
+        ],
       },
     },
   ],

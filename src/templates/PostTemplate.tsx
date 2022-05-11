@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { FaRegCalendar } from "react-icons/fa";
 import { Markdown } from "../styles/markdown";
 import WithLineNumbers from "../styles/WithLineNumbers";
+import Img from "gatsby-image";
 
 interface PostTemplateProps {
   children: JSX.Element;
@@ -98,11 +99,10 @@ const components = {
   code: WithLineNumbers,
 };
 
-function PostTemplate({ pageContext, children }: PostTemplateProps) {
-  const { frontmatter } = pageContext;
-  const year = new Date(frontmatter.date).getFullYear();
-  const month = new Date(frontmatter.date).getMonth();
-  const day = new Date(frontmatter.date).getDay();
+function PostTemplate({
+  pageContext: { frontmatter },
+  children,
+}: PostTemplateProps) {
   return (
     <Layout>
       <PageHead>
@@ -115,7 +115,7 @@ function PostTemplate({ pageContext, children }: PostTemplateProps) {
             <PostTitle>{frontmatter.title}</PostTitle>
             <PostDate>
               <FaRegCalendar />
-              {year}년 {month}월 {day}일에 작성
+              {frontmatter.date}에 작성
             </PostDate>
           </PostHead>
           <PostBody>
