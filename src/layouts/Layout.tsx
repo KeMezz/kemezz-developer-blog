@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../styles/theme";
 import Footer from "../components/Footer";
@@ -24,10 +24,16 @@ interface iLayout {
 }
 
 function Layout({ children }: iLayout) {
-  const [isDark, setIsDark] = useState(
-    false
-    // JSON.parse(localStorage.getItem("isDark") || "false")
-  );
+  const [isDark, setIsDark] = useState(false);
+
+  useLayoutEffect(() => {
+    if (localStorage.getItem("isDark") === "true") {
+      setIsDark(true);
+    } else {
+      setIsDark(false);
+    }
+  }, []);
+
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <GlobalStyles />

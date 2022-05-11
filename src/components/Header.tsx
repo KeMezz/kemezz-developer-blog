@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { HiOutlineMenuAlt4, HiCode } from "react-icons/hi";
-import { Link } from "gatsby";
+import { navigate } from "gatsby";
 
 const Container = styled.header`
   display: flex;
@@ -64,17 +64,18 @@ interface iHeader {
 
 function Header({ isDark, setIsDark }: iHeader) {
   const toggleTheme = () => setIsDark((prev: boolean) => !prev);
-  // useEffect(
-  //   () => localStorage.setItem("isDark", JSON.stringify(isDark)),
-  //   [isDark]
-  // );
+  const goHome = () => navigate("/");
+
+  useEffect(
+    () => localStorage.setItem("isDark", JSON.stringify(isDark)),
+    [isDark]
+  );
+
   return (
     <Container>
       <Wrapper>
         <Menu />
-        <Link to="/">
-          <Logo />
-        </Link>
+        <Logo onClick={goHome} />
         <ThemeSwitch onClick={toggleTheme}>
           <ToggleCircle isDark={isDark} />
         </ThemeSwitch>

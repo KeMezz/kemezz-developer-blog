@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { FaRegCalendar } from "react-icons/fa";
 import { Markdown } from "../styles/markdown";
 import WithLineNumbers from "../styles/WithLineNumbers";
-import Img from "gatsby-image";
 
 interface PostTemplateProps {
   children: JSX.Element;
@@ -30,9 +29,6 @@ const PageHead = styled.section`
   h1 {
     font-size: 30px;
     font-weight: 900;
-  }
-  h3 {
-    width: 50%;
   }
 `;
 const PageBody = styled.section`

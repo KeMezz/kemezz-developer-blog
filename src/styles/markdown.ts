@@ -14,7 +14,12 @@ export const Markdown = styled.div`
     border: solid 1px ${(props) => props.theme.header};
     background-color: ${(props) => props.theme.background};
     padding: 2px 8px;
-    font-size: 15px;
+    font-size: 0.9em;
+    border-radius: 8px;
+  }
+
+  em {
+    font-style: italic;
   }
 
   h1,
