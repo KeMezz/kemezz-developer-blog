@@ -14,6 +14,9 @@ const RecentTitle = styled.h1`
   font-weight: bold;
   margin-bottom: 26px;
   margin-left: 14px;
+  @media (max-width: 1024px) {
+    padding: 0 20px;
+  }
 `;
 
 const PostLists = styled.div`
@@ -23,6 +26,7 @@ const PostLists = styled.div`
   row-gap: 40px;
   @media (max-width: 1024px) {
     gap: 18px;
+    padding: 0 20px;
   }
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -114,6 +118,7 @@ function Home() {
               date
               description
               title
+              tech
             }
             excerpt(pruneLength: 90)
           }

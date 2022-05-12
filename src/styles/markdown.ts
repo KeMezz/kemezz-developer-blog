@@ -19,6 +19,10 @@ export const Markdown = styled.div`
     padding: 2px 8px;
     font-size: 0.9em;
     border-radius: 8px;
+    font-family: "M PLUS 1 Code", "Noto Sans KR";
+    @media (max-width: 768px) {
+      padding: 1px 4px;
+    }
   }
 
   em {

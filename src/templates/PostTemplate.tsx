@@ -13,6 +13,7 @@ interface PostTemplateProps {
       date: string;
       description: string;
       title: string;
+      tech: string;
     };
   };
 }
@@ -26,6 +27,9 @@ const PageHead = styled.section`
   gap: 18px;
   text-align: center;
   line-height: 1.5;
+  @media (max-width: 1024px) {
+    padding: 0 20px;
+  }
   h1 {
     font-size: 30px;
     font-weight: 900;
@@ -57,14 +61,11 @@ const Post = styled.section`
     width: 100%;
   }
   @media (max-width: 1024px) {
-    width: 100vw;
     padding: 30px 34px;
-    transform: translateX(-40px);
     border-radius: 0;
   }
   @media (max-width: 450px) {
     padding: 30px 20px;
-    transform: translateX(-20px);
   }
 `;
 const PostHead = styled.div`
@@ -108,6 +109,16 @@ const Addon = styled.section`
   display: flex;
   flex-direction: column;
   gap: 36px;
+  @media (max-width: 1300px) {
+    flex-direction: row;
+  }
+  @media (max-width: 1024px) {
+    padding: 0;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 18px;
+  }
   div {
     position: sticky;
     top: 22px;
@@ -116,6 +127,17 @@ const Addon = styled.section`
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
     padding: 26px 42px;
+    @media (max-width: 1300px) {
+      width: 100%;
+    }
+    @media (max-width: 768px) {
+      border-radius: 0;
+    }
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      padding-bottom: 0.6em;
+    }
   }
 `;
 
@@ -127,6 +149,8 @@ function PostTemplate({
   pageContext: { frontmatter },
   children,
 }: PostTemplateProps) {
+  const techArr = frontmatter.tech.split(". ");
+  console.log(techArr);
   return (
     <Layout>
       <PageHead>
@@ -147,8 +171,17 @@ function PostTemplate({
           </PostBody>
         </Post>
         <Addon>
-          <div></div>
-          <div></div>
+          <div>
+            <h2>기술</h2>
+            <ul>
+              {techArr.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2>목차</h2>
+          </div>
         </Addon>
       </PageBody>
     </Layout>

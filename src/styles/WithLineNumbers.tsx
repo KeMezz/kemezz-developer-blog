@@ -9,10 +9,11 @@ const Pre = styled.pre`
   text-align: left;
   margin: 1em 0;
   padding: 18px;
-  overflow: hidden;
+  overflow-x: auto;
   border-radius: 10px;
   white-space: pre;
   table-layout: fixed;
+  scrollbar-width: none;
 `;
 
 const Line = styled.div`
