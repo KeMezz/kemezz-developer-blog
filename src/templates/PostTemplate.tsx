@@ -13,7 +13,7 @@ interface PostTemplateProps {
       date: string;
       description: string;
       title: string;
-      tech: string;
+      tech: string[];
     };
   };
 }
@@ -108,7 +108,7 @@ const PostBody = styled(Markdown)`
 const Addon = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 22px;
   @media (max-width: 1300px) {
     flex-direction: row;
   }
@@ -120,8 +120,6 @@ const Addon = styled.section`
     gap: 18px;
   }
   div {
-    position: sticky;
-    top: 22px;
     width: 360px;
     background-color: ${(props) => props.theme.header};
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
@@ -140,6 +138,21 @@ const Addon = styled.section`
     }
   }
 `;
+const TechLists = styled.div`
+  ul,
+  li {
+    list-style: none;
+  }
+  li {
+    padding: 20px 0;
+    font-size: 18px;
+  }
+`;
+const TechImg = styled.img``;
+const IndexLists = styled.div`
+  position: sticky;
+  top: 22px;
+`;
 
 const components = {
   code: WithLineNumbers,
@@ -149,8 +162,6 @@ function PostTemplate({
   pageContext: { frontmatter },
   children,
 }: PostTemplateProps) {
-  const techArr = frontmatter.tech.split(". ");
-  console.log(techArr);
   return (
     <Layout>
       <PageHead>
@@ -171,17 +182,20 @@ function PostTemplate({
           </PostBody>
         </Post>
         <Addon>
-          <div>
+          <TechLists>
             <h2>기술</h2>
             <ul>
-              {techArr.map((item) => (
-                <li key={item}>{item}</li>
+              {frontmatter.tech.map((item) => (
+                <>
+                  <TechImg src="" />
+                  <li key={item}>{item}</li>
+                </>
               ))}
             </ul>
-          </div>
-          <div>
+          </TechLists>
+          <IndexLists>
             <h2>목차</h2>
-          </div>
+          </IndexLists>
         </Addon>
       </PageBody>
     </Layout>
