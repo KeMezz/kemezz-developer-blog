@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { FaRegCalendar } from "react-icons/fa";
 import { Markdown } from "../styles/markdown";
 import WithLineNumbers from "../styles/WithLineNumbers";
+import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
+import { graphql, useStaticQuery } from "gatsby";
 
 interface PostTemplateProps {
   children: JSX.Element;
@@ -16,6 +18,96 @@ interface PostTemplateProps {
       tech: string[];
     };
   };
+}
+
+interface ITechlistsImages {
+  allFile: {
+    edges: {
+      node: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData;
+        };
+        name: string;
+      };
+    }[];
+  };
+}
+
+const components = {
+  code: WithLineNumbers,
+};
+
+function PostTemplate({
+  pageContext: { frontmatter },
+  children,
+}: PostTemplateProps) {
+  const {
+    allFile: { edges: techlistsImages },
+  } = useStaticQuery<ITechlistsImages>(graphql`
+    {
+      allFile(filter: { relativeDirectory: { eq: "techlists" } }) {
+        edges {
+          node {
+            childImageSharp {
+              gatsbyImageData(width: 36)
+            }
+            name
+          }
+        }
+      }
+    }
+  `);
+
+  return (
+    <Layout>
+      <PageHead>
+        <h1>{frontmatter.title}</h1>
+        <h3>{frontmatter.description}</h3>
+      </PageHead>
+      <PageBody>
+        <Post>
+          <PostHead>
+            <PostTitle>{frontmatter.title}</PostTitle>
+            <PostDate>
+              <FaRegCalendar />
+              {frontmatter.date}에 작성
+            </PostDate>
+          </PostHead>
+          <PostBody>
+            <MDXProvider components={components}>{children}</MDXProvider>
+          </PostBody>
+        </Post>
+        <Addon>
+          <TechLists>
+            <h2>기술</h2>
+            {frontmatter.tech.map((techName) => {
+              const targetTech = techlistsImages.filter(
+                (techlist) => techlist.node.name === techName
+              );
+              const image = getImage(
+                targetTech[0].node.childImageSharp.gatsbyImageData
+              );
+              return (
+                <ul key={techName}>
+                  <>
+                    <GatsbyImage
+                      image={image}
+                      alt={techName}
+                      style={{
+                        borderRadius: 4,
+                        boxShadow: "0 2px 2px rgba(0,0,0,0.1)",
+                      }}
+                    />
+                    <li key={techName}>{techName}</li>
+                  </>
+                </ul>
+              );
+            })}
+          </TechLists>
+        </Addon>
+      </PageBody>
+    </Layout>
+  );
 }
 
 const PageHead = styled.section`
@@ -119,87 +211,46 @@ const Addon = styled.section`
     flex-direction: column;
     gap: 18px;
   }
-  div {
-    width: 360px;
-    background-color: ${(props) => props.theme.header};
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-    border-radius: 20px;
-    padding: 26px 42px;
-    @media (max-width: 1300px) {
-      width: 100%;
-    }
-    @media (max-width: 768px) {
-      border-radius: 0;
-    }
-    h2 {
-      font-size: 24px;
-      font-weight: bold;
-      padding-bottom: 0.6em;
-    }
-  }
 `;
 const TechLists = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 360px;
+  background-color: ${(props) => props.theme.header};
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: 30px 38px;
+  @media (max-width: 1300px) {
+    width: 100%;
+  }
+  @media (max-width: 1024px) {
+    border-radius: 0;
+    padding: 30px 20px;
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 0.6em;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
   ul,
   li {
     list-style: none;
   }
   li {
-    padding: 20px 0;
+    line-height: 1.4;
     font-size: 18px;
+    font-weight: bold;
+    @media (max-width: 1024px) {
+      font-size: 16px;
+      font-weight: 600;
+    }
   }
 `;
-const TechImg = styled.img``;
-const IndexLists = styled.div`
-  position: sticky;
-  top: 22px;
-`;
-
-const components = {
-  code: WithLineNumbers,
-};
-
-function PostTemplate({
-  pageContext: { frontmatter },
-  children,
-}: PostTemplateProps) {
-  return (
-    <Layout>
-      <PageHead>
-        <h1>{frontmatter.title}</h1>
-        <h3>{frontmatter.description}</h3>
-      </PageHead>
-      <PageBody>
-        <Post>
-          <PostHead>
-            <PostTitle>{frontmatter.title}</PostTitle>
-            <PostDate>
-              <FaRegCalendar />
-              {frontmatter.date}에 작성
-            </PostDate>
-          </PostHead>
-          <PostBody>
-            <MDXProvider components={components}>{children}</MDXProvider>
-          </PostBody>
-        </Post>
-        <Addon>
-          <TechLists>
-            <h2>기술</h2>
-            <ul>
-              {frontmatter.tech.map((item) => (
-                <>
-                  <TechImg src="" />
-                  <li key={item}>{item}</li>
-                </>
-              ))}
-            </ul>
-          </TechLists>
-          <IndexLists>
-            <h2>목차</h2>
-          </IndexLists>
-        </Addon>
-      </PageBody>
-    </Layout>
-  );
-}
 
 export default PostTemplate;
