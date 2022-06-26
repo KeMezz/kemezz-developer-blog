@@ -3,7 +3,6 @@ import React from "react";
 import styled from "styled-components";
 import Layout from "../layouts/Layout";
 import { FaRegCalendar } from "react-icons/fa";
-import { motion } from "framer-motion";
 
 const Container = styled.section`
   padding: 60px 0;
