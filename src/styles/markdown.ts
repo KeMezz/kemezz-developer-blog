@@ -95,6 +95,13 @@ export const Markdown = styled.div`
     --x-height-multiplier: 0.35;
     margin: 0 0 2em 0;
     padding: 0;
+    a {
+      color: ${(props) => props.theme.text};
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   li,
