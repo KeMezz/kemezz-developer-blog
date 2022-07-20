@@ -25,7 +25,7 @@ interface ITechlistsImages {
     edges: {
       node: {
         childImageSharp: {
-          gatsbyImageData: IGatsbyImageData;
+          gatsbyImageData: IGatsbyImageData | undefined;
         };
         name: string;
       };
