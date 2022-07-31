@@ -40,7 +40,10 @@ function Layout({ children }: iLayout) {
 
   return (
     <>
-      <SEO />
+      <SEO
+        title="KeMezz Developer Blog"
+        description="개발자 정형진의 블로그입니다. 현재 테스트 상태로 운영 중입니다."
+      />
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyles />
         <Header isDark={isDark} setIsDark={setIsDark} />

@@ -39,6 +39,17 @@ export const SEO = ({
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:image" content={seo.image} />
       <meta name="twitter:creator" content={seo.twitterUsername} />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={seo.url} />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:image" content={seo.image} />
+      <meta property="og:description" content={seo.description} />
+      <meta property="og:site_name" content={seo.title} />
+      <meta property="og:locale" content="ko" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+
       <link
         rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👤</text></svg>"
