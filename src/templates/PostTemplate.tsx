@@ -7,6 +7,7 @@ import { Markdown } from "../styles/markdown";
 import WithLineNumbers from "../styles/WithLineNumbers";
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import { graphql, useStaticQuery } from "gatsby";
+import { SEO } from "../components/Seo";
 
 interface PostTemplateProps {
   children: JSX.Element;
@@ -59,54 +60,60 @@ function PostTemplate({
   `);
 
   return (
-    <Layout>
-      <PageHead>
-        <h1>{frontmatter.title}</h1>
-        <h3>{frontmatter.description}</h3>
-      </PageHead>
-      <PageBody>
-        <Post>
-          <PostHead>
-            <PostTitle>{frontmatter.title}</PostTitle>
-            <PostDate>
-              <FaRegCalendar />
-              {frontmatter.date}에 작성
-            </PostDate>
-          </PostHead>
-          <PostBody>
-            <MDXProvider components={components}>{children}</MDXProvider>
-          </PostBody>
-        </Post>
-        <Addon>
-          <TechLists>
-            <h2>기술</h2>
-            {frontmatter.tech.map((techName) => {
-              const targetTech = techlistsImages.filter(
-                (techlist) => techlist.node.name === techName
-              );
-              const image = getImage(
-                targetTech[0].node.childImageSharp.gatsbyImageData
-              );
-              return (
-                <ul key={techName}>
-                  <>
-                    <GatsbyImage
-                      image={image}
-                      alt={techName}
-                      style={{
-                        borderRadius: 4,
-                        boxShadow: "0 2px 2px rgba(0,0,0,0.1)",
-                      }}
-                    />
-                    <li key={techName}>{techName}</li>
-                  </>
-                </ul>
-              );
-            })}
-          </TechLists>
-        </Addon>
-      </PageBody>
-    </Layout>
+    <>
+      <SEO
+        title={`KeMezz Dev Blog | ${frontmatter.title}`}
+        description={frontmatter.description}
+      />
+      <Layout>
+        <PageHead>
+          <h1>{frontmatter.title}</h1>
+          <h3>{frontmatter.description}</h3>
+        </PageHead>
+        <PageBody>
+          <Post>
+            <PostHead>
+              <PostTitle>{frontmatter.title}</PostTitle>
+              <PostDate>
+                <FaRegCalendar />
+                {frontmatter.date}에 작성
+              </PostDate>
+            </PostHead>
+            <PostBody>
+              <MDXProvider components={components}>{children}</MDXProvider>
+            </PostBody>
+          </Post>
+          <Addon>
+            <TechLists>
+              <h2>기술</h2>
+              {frontmatter.tech.map((techName) => {
+                const targetTech = techlistsImages.filter(
+                  (techlist) => techlist.node.name === techName
+                );
+                const image = getImage(
+                  targetTech[0].node.childImageSharp.gatsbyImageData
+                );
+                return (
+                  <ul key={techName}>
+                    <>
+                      <GatsbyImage
+                        image={image}
+                        alt={techName}
+                        style={{
+                          borderRadius: 4,
+                          boxShadow: "0 2px 2px rgba(0,0,0,0.1)",
+                        }}
+                      />
+                      <li key={techName}>{techName}</li>
+                    </>
+                  </ul>
+                );
+              })}
+            </TechLists>
+          </Addon>
+        </PageBody>
+      </Layout>
+    </>
   );
 }
 

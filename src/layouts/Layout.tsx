@@ -39,12 +39,15 @@ function Layout({ children }: iLayout) {
   }, []);
 
   return (
-    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-      <GlobalStyles />
-      <Header isDark={isDark} setIsDark={setIsDark} />
-      <Container>{children}</Container>
-      <Footer />
-    </ThemeProvider>
+    <>
+      <SEO />
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <GlobalStyles />
+        <Header isDark={isDark} setIsDark={setIsDark} />
+        <Container>{children}</Container>
+        <Footer />
+      </ThemeProvider>
+    </>
   );
 }
 

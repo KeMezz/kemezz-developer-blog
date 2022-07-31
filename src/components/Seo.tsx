@@ -7,10 +7,10 @@ export const SEO = ({
   pathname,
   children,
 }: {
-  title: string;
-  description: string;
-  pathname: string;
-  children: Element;
+  title?: string;
+  description?: string;
+  pathname?: string;
+  children?: Element;
 }) => {
   const {
     title: defaultTitle,
