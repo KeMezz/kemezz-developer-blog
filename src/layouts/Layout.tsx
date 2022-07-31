@@ -3,6 +3,7 @@ import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../styles/theme";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { SEO } from "../components/Seo";
 import "../styles/reset.css";
 
 const GlobalStyles = createGlobalStyle`
