@@ -4,7 +4,9 @@ import path from "path";
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Hyeongjin Developer Blog`,
-    siteUrl: `https://www.yourdomain.tld`,
+    description: `개발자 정형진의 블로그입니다. 현재 테스트 상태로 운영 중입니다.`,
+    siteUrl: `https://www.kemezz.com`,
+    image: `./src/images/meta/og-thumbnail.jpg`,
   },
   plugins: [
     "gatsby-plugin-image",
