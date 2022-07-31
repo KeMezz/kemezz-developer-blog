@@ -40,7 +40,7 @@ export const SEO = ({
       <meta name="twitter:image" content={seo.image} />
       <meta name="twitter:creator" content={seo.twitterUsername} />
 
-      <meta property="og:type" content="website" />
+      {/* <meta property="og:type" content="website" />
       <meta property="og:url" content={seo.url} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:image" content={seo.image} />
@@ -48,7 +48,7 @@ export const SEO = ({
       <meta property="og:site_name" content={seo.title} />
       <meta property="og:locale" content="ko" />
       <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
+      <meta property="og:image:height" content="630" /> */}
 
       <link
         rel="icon"
